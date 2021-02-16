@@ -1,0 +1,20 @@
+<body class='resultbody'>
+
+<h1 class="pagetitle"><strong><img src="/html/images/KXVax.gif" alt="cd image" width="183" height="160" /> CDQuery Results </strong>
+<img src="/html/images/KXVax.gif" alt="cd image" width="183" height="158" /></h1>
+
+<p>TOTAL RESULTS:<span class="totalresults">{{count}}</span></p>
+
+<ol>
+{{#disks}}
+  <li><a target='_blank' href='/showdisk/{{id}}'>{{title}} BY {{artist}}</a>
+    <ol>
+      <li>Length: {{length}}</li>
+      <li>Genre:  {{genre}}</li>
+      <li>Year:  {{year}}</li>
+    </ol>
+  </li>
+{{/disks}}
+</ol>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<script type='text/javascript'>
+
+idx = 0;
+
+function timeFormatter(tot)
+{
+   let min = Math.floor(tot/60);
+   let sec = tot - min*60;
+   if (sec < 10) return `${min}:0${sec}`;
+   return `${min}:${sec}`;
+};
+
+function initVue()
+{
+   console.log("INIT");
+   Vue.component('track-item', {
+     props: [ 'trk' ],
+     template: `<tr>
+		  <td>{{ trk.number+1 }}</td>
+		  <td>{{ trk.name }}</td>
+		  <td>{{ timeFormat(trk.length) }}</td>
+		</tr>`,
+     methods: { timeFormat: timeFormatter },
+   } );
+
+   let app = new Vue( {
+      el: '#cddata',
+      data : { index: idx, cds: cds },
+      methods: {
+	nextCD: function() { this.index = (this.index+1)%cds.length; },
+	cd: function() { return this.cds[this.index]; },
+      }
+    } );
+}
+
+$(function() { initVue(); } );
+
+const cds = {{{ jsondisks }}}
+
+
+</script>
+
+<body class='resultbody'>
+
+
+<div id='cddata'>
+
+<h1>{{ cd().title }}<br>by {{ cd().artist }}</h1>
+<h2>General Information</h2>
+<table>
+   <tr><td>Genre</td><td>{{ cd().genre }}</td></tr>
+   <tr v-if='cd().year > 0'><td>Year</td><td>{{ cd().year }}</td></tr>
+   <tr><td>Tracks</td><td>{{ cd().tracks.length }}</td></tr>
+</table>
+<h2>Track Details</h2>
+<table>
+   <tr><th>Track</th><th>Title</th><th>Length</th></tr>
+   <tr is='track-item' v-for='t in cd().tracks' v-bind:trk='t' :key='t.number'></tr>
+</table>
+
+<div>
+   <button v-on:click='nextCD'>Next</button>
+   <input type='number' min='0' v-bind:max='cds.length-1' v-model='index'/>
+</div>
+
+</div>
+
+</body>

@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/* CSS Document */
+body {
+	background-color: #CFF;
+}
+.pagetitle {
+	text-align: center;
+	font-size: 36px;
+	font-weight: bold;
+}
+titleimage {
+	text-align: left;
+}
+.totalresults {
+}
+
+.resultbody {
+   background-color: #CFC;
+}
+
+.singlebody {
+   background-color: #FFC;
+}
+

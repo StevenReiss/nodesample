@@ -1,0 +1,9 @@
+{
+  "name": "cdquery",
+  "description": "Node.JS demo using CdQuery database",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

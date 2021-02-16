@@ -1,0 +1,26 @@
+<body class='singlebody'>
+<p class="pagetitle"><strong><img src="/html/images/KXVax.gif" alt="cd image" width="183" height="160" /> CDQuery CD </strong><img src="/html/images/KXVax.gif" alt="cd image" width="183" height="158" />
+</p>
+<table width="100%" border="1">
+  <tr>
+    <td>TITLE</td>
+    <td>{{disktitle}}</td>
+  </tr>
+  <tr>
+    <td>ARTIST</td>
+    <td>{{diskartist}}</td>
+  </tr>
+  <tr>
+    <td>GENRE</td>
+    <td>{{diskgenre}}</td>
+  </tr>
+{{#tracks}}
+  <tr>
+    <td>TRACK {{number}}</td>
+    <td>{{name}} BY {{artist}} [{{length}}]</td>
+  </tr>
+{{/tracks}}
+</table>
+<p class="pagetitle">&nbsp;</p>
+</body>
+</html>
