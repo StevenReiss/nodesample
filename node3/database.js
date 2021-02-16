@@ -14,8 +14,17 @@
 /*										*/
 /********************************************************************************/
 
-const DB_CONNECT = 'postgres://spr:yGCdDnDC@db.cs.brown.edu/cdquery';
+const DB_CONNECT = 'postgres://XXXXXX@db.cs.brown.edu/cdquery';
+const PWD_FILE = '/.samplepass';
 
+function dbConnect()
+{
+   let pwd = fs.readFileSync(__dirname + PWD_FILE);
+   pwd = pwd.toString().trim();
+   let conn = DB_CONNECT.replace("XXXXXX",pwd);
+   
+   return conn;
+}
 
 
 /********************************************************************************/
@@ -34,7 +43,7 @@ const adb = require('any-db');
 /*										*/
 /********************************************************************************/
 
-const pool = adb.createPool(DB_CONNECT,{ min : 1, max : 4 });
+const pool = adb.createPool(dbConnect(),{ min : 1, max : 4 });
 
 
 
@@ -52,9 +61,9 @@ function query(q,prms,next)
       prms = undefined;
     }
 
-   q = fixQuery(q);
-
    console.log("DATABASE:",q,prms);
+
+   q = fixQuery(q);
 
    return pool.query(q,prms,callback(next));
 }
@@ -80,7 +89,7 @@ function callback(next)
 
 function fixQuery(q)
 {
-   if (DB_CONNECT.substring(0,5) == "mysql") {
+   if (dbConnect().substring(0,5) == "mysql") {
       q = q.replace(/\$\d+/g,"?");
     }
 

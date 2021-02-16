@@ -56,7 +56,7 @@ function handleShow(req,res)
    let diskid = req.params.diskid;
 
    let q = "SELECT D.title,A.name as artist,D.length,D.genre,D.year " +
-	   "FROM Disk D, Artist A " +
+	   "FROM disk D, artist A " +
 	   "WHERE D.id = $1 AND A.id = D.artistid";
    database.query(q,[diskid],function (e1,d1) { handleShow1(req,res,e1,d1); } );
 }
@@ -73,7 +73,7 @@ function handleShow1(req,res,err,data)
 		 diskyear: data.rows[0].year };
 
    let q = "SELECT T.name,A.name as artist,T.length,T.number " +
-	   " FROM Track T,Artist A " +
+	   " FROM track T,artist A " +
 	   " WHERE T.diskid = $1 AND T.artistid = A.id";
 
    database.query(q,[req.params.diskid],function(e1,d1) { handleShow2(req,res,rdata,e1,d1); });

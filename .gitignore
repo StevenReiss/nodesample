@@ -3,3 +3,6 @@ bBACKUP
 bBUFFERS
 bCONTROL
 package-lock.json
+*.code-workspace
+*.cpuprofile
+.DS_Store

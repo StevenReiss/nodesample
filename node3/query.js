@@ -33,10 +33,10 @@ function handleQuery(req,res)
    console.log("QUERY: ",keyarr,keyarr.length);
 
    let q = "SELECT D.title,A.name AS artist,D.length,D.genre,D.year,D.id " +
-       "FROM Disk D,Artist A";
+       "FROM disk D,artist A";
    for (let i = 0; i < keyarr.length; ++i) {
       let j = i+1;
-      q += " , Words W" + j;
+      q += " , words W" + j;
     }
    q += " WHERE D.artistid = A.id ";
    for (i = 0; i < keyarr.length; ++i) {
