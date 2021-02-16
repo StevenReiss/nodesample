@@ -6,3 +6,4 @@ package-lock.json
 *.code-workspace
 *.cpuprofile
 .DS_Store
+.samplepass
